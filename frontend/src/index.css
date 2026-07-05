@@ -1,0 +1,4 @@
+@import "tailwindcss";
+
+/* Scan everything inside the current directory (src) and its subfolders */
+@source "./**/*.{js,jsx,ts,tsx}";
