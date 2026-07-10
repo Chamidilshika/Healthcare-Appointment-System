@@ -12,18 +12,24 @@ dotenv.config();
 
 const app = express();
 
-// Connect Database
+
+// Database
 connectDB();
+
 
 // Middleware
 app.use(
   cors({
-    origin: "*",
-    credentials: true,
+    origin: [
+      "http://localhost:5173",
+      process.env.FRONTEND_URL
+    ],
+    credentials: true
   })
 );
 
 app.use(express.json());
+
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -32,23 +38,19 @@ app.use("/api/appointments", appointmentRoutes);
 app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/contact", contactRoutes);
 
-app.use("/uploads", express.static("uploads"));
 
-// Test route
-app.get("/", (req, res) => {
-  res.send("Backend API is running...");
+// Test API
+app.get("/", (req,res)=>{
+    res.send("Backend API is running...");
 });
 
 
-// Only run listen locally
-if (process.env.NODE_ENV !== "production") {
-  const PORT = process.env.PORT || 5000;
-
-  app.listen(PORT, () => {
-    console.log(`Server running on ${PORT}`);
-  });
+// Local only
+if(process.env.NODE_ENV !== "production"){
+    app.listen(5000,()=>{
+        console.log("Server running on port 5000");
+    });
 }
 
 
-// Export for Vercel
 module.exports = app;
