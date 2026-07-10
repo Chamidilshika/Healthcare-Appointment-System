@@ -16,8 +16,8 @@ function Contact() {
   e.preventDefault();
 
   try {
-    const res = await api.post("/contact", form);
-
+    await api.post("/contact", form);
+    
     alert("Message sent successfully!");
 
     setForm({

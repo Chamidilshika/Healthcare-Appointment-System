@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
 import HeroSectionImg from '../../assets/HeroSectionImg.jpg'
-import Doctor from '../../assets/Doctor.jpg'
 import Footer from "../../components/Fotter";
 import api from "../../services/api";
 
